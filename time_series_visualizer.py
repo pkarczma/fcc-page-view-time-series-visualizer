@@ -13,8 +13,8 @@ df = df[(df['value'] > df['value'].quantile(0.025)) & (df['value'] < df['value']
 
 def draw_line_plot():
     # Draw line plot
-
-
+    plot = sns.lineplot(x='date', y='value', data=df)
+    fig = plot.get_figure()
 
 
 
