@@ -14,13 +14,10 @@ df = df[(df['value'] > df['value'].quantile(0.025)) & (df['value'] < df['value']
 
 def draw_line_plot():
     # Draw line plot
-    plt.figure(figsize=(15,6))
+    plt.figure(figsize=(15,5))
     ax = sns.lineplot(x='date', y='value', data=df)
     ax.set(xlabel='Date', ylabel='Page Views', title='Daily freeCodeCamp Forum Page Views 5/2016-12/2019')
     fig = ax.get_figure()
-    
-
-
 
     # Save image and return fig (don't change this part)
     fig.savefig('line_plot.png')
@@ -28,13 +25,20 @@ def draw_line_plot():
 
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
-    df_bar = None
+    df_bar = df.resample('M').mean()
+    df_bar['year'] = df_bar.index.year
+    df_bar['month'] = df_bar.index.month_name()
+
+    # Plot settings
+    plt.figure(figsize=(8,8))
+    sns.color_palette()
+    months_order = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
     # Draw bar plot
-
-
-
-
+    ax = sns.barplot(x='year', y='value', hue='month', hue_order=months_order, data=df_bar, palette=sns.color_palette())
+    ax.set(xlabel='Years', ylabel='Average Page Views', title='')
+    ax.legend().set_title('Months')
+    fig = ax.get_figure()
 
     # Save image and return fig (don't change this part)
     fig.savefig('bar_plot.png')
