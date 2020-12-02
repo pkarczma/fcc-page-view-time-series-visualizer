@@ -30,14 +30,14 @@ def draw_bar_plot():
     df_bar['month'] = df_bar.index.month_name()
 
     # Plot settings
-    plt.figure(figsize=(8,8))
-    sns.color_palette()
+    plt.figure(figsize=(10,9))
     months_order = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
     # Draw bar plot
     ax = sns.barplot(x='year', y='value', hue='month', hue_order=months_order, data=df_bar, palette=sns.color_palette())
     ax.set(xlabel='Years', ylabel='Average Page Views', title='')
     ax.legend().set_title('Months')
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
     fig = ax.get_figure()
 
     # Save image and return fig (don't change this part)
