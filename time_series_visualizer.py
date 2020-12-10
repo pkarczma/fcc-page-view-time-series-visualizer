@@ -36,7 +36,7 @@ def draw_bar_plot():
     # Draw bar plot
     ax = sns.barplot(x='year', y='value', hue='month', hue_order=months_order, data=df_bar, palette=sns.color_palette())
     ax.set(xlabel='Years', ylabel='Average Page Views', title='')
-    ax.legend().set_title('Months')
+    ax.legend(loc='upper left', title='Months')
     ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
     fig = ax.get_figure()
 
